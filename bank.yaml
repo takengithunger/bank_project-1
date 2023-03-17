@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bank_deploy
+  labels:
+    app: bank_deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app:  bank_deploy
+  template:
+    metadata:
+      labels:
+        app:  bank_deploy
+    spec:
+      containers:
+      - name: bank-container
+        image: shanth19611356248/bank_app
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bank_service
+  labels:
+    app:  bank_deploy
+spec:
+  selector:
+    app:  bank_deploy
+  type: NodePort
+  ports:
+  - nodePort: 31000
+    port: 8080
+    targetPort: 8080

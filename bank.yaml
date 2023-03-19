@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: bk-container
-        image:
+        image: shanth19611356248/bk_app
         ports:
         - containerPort: 8080
 ---

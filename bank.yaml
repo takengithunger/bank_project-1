@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bk_deploy
+  name: bkdeploy1
   labels:
-    app: bk_deploy
+    app: bkdeploy
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app:  bk_deploy
+      app:  bkdeploy
   template:
     metadata:
       labels:
-        app:  bk_deploy
+        app:  bkdeploy
     spec:
       containers:
-      - name: bk-container
+      - name: bkcontainer
         image: shanth19611356248/bk_app
         ports:
         - containerPort: 8080
@@ -23,12 +23,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bk_service
+  name: bkservice
   labels:
-    app:  bk_deploy
+    app:  bkdeploy
 spec:
   selector:
-    app:  bk_deploy
+    app:  bkdeploy
   type: NodePort
   ports:
   - nodePort: 31203
